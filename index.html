@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sistema de Manutenção de Equipamentos</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Sistema de Manutenção de Equipamentos</h1>
+    <nav>
+        <button class="menu-btn active" data-section="adicionar">Adicionar Equipamento</button>
+        <button class="menu-btn" data-section="listar">Listar Equipamentos</button>
+        <button class="menu-btn" data-section="remover">Remover Equipamento</button>
+        <button class="menu-btn" data-section="registrar-manutencao">Registrar Manutenção</button>
+        <button class="menu-btn" data-section="listar-manutencoes">Listar Manutenções</button>
+        <button class="menu-btn" data-section="verificar-revisoes">Verificar Revisões Vencidas</button>
+    </nav>
+
+    <section id="adicionar" class="section-atual">
+        <h2>Adicionar Equipamento</h2>
+        <form id="form-adicionar-equipamento">
+            <label for="nome">Nome do equipamento:</label>
+            <input type="text" id="nome" name="nome" required minlength="1" />
+
+            <label for="tipo">Tipo do equipamento:</label>
+            <select id="tipo" name="tipo" required>
+                <option value="" disabled selected>Selecione o tipo</option>
+                <option>Equipamento Eletrônico</option>
+                <option>Não Eletrônico</option>
+                <option>Outro</option>
+            </select>
+
+            <label for="data_ultima_manutencao">Data da última manutenção:</label>
+            <input type="date" id="data_ultima_manutencao" name="data_ultima_manutencao" required />
+
+            <label for="prazo_revisao">Prazo para próxima revisão:</label>
+            <input type="date" id="prazo_revisao" name="prazo_revisao" required />
+
+            <div id="voltagem-container" style="display:none;">
+                <label for="voltagem">Voltagem (110 ou 220):</label>
+                <input type="number" id="voltagem" name="voltagem" min="110" max="220" step="110" />
+            </div>
+
+            <button type="submit">Adicionar</button>
+        </form>
+        <div id="mensagem-adicionar" role="alert"></div>
+    </section>
+
+    <section id="listar" style="display:none;">
+        <h2>Lista de Equipamentos</h2>
+        <table id="tabela-equipamentos" aria-label="Lista de Equipamentos">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Última Manutenção</th>
+                    <th>Prazo Revisão</th>
+                    <th>Status</th>
+                    <th>Voltagem</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+
+    <section id="remover" style="display:none;">
+        <h2>Remover Equipamento</h2>
+        <form id="form-remover-equipamento">
+            <label for="nome-remover">Nome do equipamento a remover:</label>
+            <input type="text" id="nome-remover" name="nome-remover" required />
+            <button type="submit">Remover</button>
+        </form>
+        <div id="mensagem-remover" role="alert"></div>
+    </section>
+
+    <section id="registrar-manutencao" style="display:none;">
+        <h2>Registrar Manutenção</h2>
+        <form id="form-registrar-manutencao">
+            <label for="equipamento-manutencao">Selecione o equipamento:</label>
+            <select id="equipamento-manutencao" name="equipamento-manutencao" required>
+                <option value="" disabled selected>Selecione um equipamento</option>
+            </select>
+
+            <label for="data-manutencao">Data da manutenção:</label>
+            <input type="date" id="data-manutencao" name="data-manutencao" required />
+
+            <label for="detalhes-manutencao">Detalhes da manutenção:</label>
+            <textarea id="detalhes-manutencao" name="detalhes-manutencao" required></textarea>
+
+            <button type="submit">Registrar</button>
+        </form>
+        <div id="mensagem-registrar" role="alert"></div>
+    </section>
+
+    <section id="listar-manutencoes" style="display:none;">
+        <h2>Lista de Manutenções</h2>
+        <table id="tabela-manutencoes" aria-label="Lista de Manutenções">
+            <thead>
+                <tr>
+                    <th>Equipamento</th>
+                    <th>Data</th>
+                    <th>Detalhes</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+
+    <section id="verificar-revisoes" style="display:none;">
+        <h2>Verificar Revisões Vencidas</h2>
+        <form id="form-verificar-revisoes">
+            <label for="data-atual">Data atual (aaaa-mm-dd):</label>
+            <input type="date" id="data-atual" name="data-atual" required />
+            <button type="submit">Verificar</button>
+        </form>
+        <div id="resultado-revisoes" role="alert" style="margin-top:1rem; font-weight: 600;"></div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
