@@ -151,3 +151,4 @@ function mostrarMensagem(id, texto, sucesso = true) {
     div.style.color = sucesso ? 'green' : 'red';
     setTimeout(() => div.textContent = '', 4000);
 }
+
